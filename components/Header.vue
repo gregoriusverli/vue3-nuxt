@@ -1,14 +1,19 @@
 <template>
-  <div class="bg-gradient-to-br to-red-500 from-pink-500">
+  <div class="bg-transparent header">
     <div class="flex flex-col lg:flex-row">
       <div
-        class="flex items-center justify-between px-3 py-4 lg:py-0 border-b border-red-400 lg:border-b-0"
+        class="flex items-center justify-between px-3 py-4 lg:py-0 border-b border-white-400 lg:border-b-0"
       >
         <div>
-          <a href="#" class="uppercase font-semibold text-white"> GREGORIUS</a>
+          <nuxt-link to="/" class="uppercase font-semibold text-white" href="#"
+            >GREGORIUS</nuxt-link
+          >
         </div>
         <div>
-          <button class="focus:outline-none text-white block lg:hidden">
+          <button
+            @click.prevent="togleHeader = !togleHeader"
+            class="focus:outline-none text-white block lg:hidden"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -27,7 +32,13 @@
         </div>
       </div>
 
-      <div class="flex flex-col lg:flex-row justify-between w-full">
+      <div
+        :class="
+          togleHeader
+            ? 'ease-in duration-300 flex flex-col lg:flex-row justify-between w-full'
+            : 'ease-out duration-300 hidden lg:flex flex-col lg:flex-row justify-between w-full'
+        "
+      >
         <div class="flex flex-col lg:flex-row">
           <nuxt-link
             class="block px-3 py-2 lg:py-4 text-white hover:text-black"
@@ -71,10 +82,24 @@
 <script>
 export default {
   name: "Header",
+  data() {
+    return {
+      togleHeader: false,
+    };
+  },
 };
 </script>
 
 <style>
+.collapse {
+  transition: 0.5s ease-out;
+  background-color: blue;
+}
+.header {
+  position: sticky !important;
+  top: 0 !important;
+  position: -webkit-sticky !important;
+}
 /* .verli {
   width: 100%;
   background-color: red;

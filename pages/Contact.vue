@@ -2,6 +2,7 @@
   <div>
     <Header />
     <h3>Contact Page</h3>
+    <p>informasi kontak</p>
   </div>
 </template>
 

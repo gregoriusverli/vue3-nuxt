@@ -1,9 +1,9 @@
 <template>
   <div>
     <Header />
-    <h3>Project Page</h3>
+    <h3>Project Page {{ state.name }}</h3>
     <div>
-      <div v-for="project in projects" :key="project.id">
+      <div v-for="project in state.projects" :key="project.id">
         <div class="p-1">
           <nuxt-link
             class="block text-black hover:text-red-500"
@@ -20,28 +20,28 @@
 </template>
 
 <script>
+import { onMounted, reactive } from "@nuxtjs/composition-api";
+import axios from "axios";
 export default {
   name: "Project",
-  data() {
-    return {
-      projects: [
-        {
-          id: 1,
-          name: "project 1",
-          detail: "ini project 1",
-        },
-        {
-          id: 2,
-          name: "project 2",
-          detail: "ini project 2",
-        },
-        {
-          id: 3,
-          name: "project 3",
-          detail: "ini project 3",
-        },
-      ],
-    };
+  setup() {
+    const state = reactive({
+      name: "verliyaaaaaaa",
+      projects: [],
+    });
+
+    onMounted(async () => {
+      await axios("https://jsonplaceholder.typicode.com/users")
+        .then((response) => {
+          console.log(response.data, "ress");
+          state.projects = response.data;
+        })
+        .catch((err) => {
+          console.log(err, "error");
+        });
+    });
+
+    return { state };
   },
 };
 </script>

@@ -2,6 +2,7 @@
   <div>
     <Header />
     <h3>Journey Page</h3>
+    <p>perjalanan hidup</p>
   </div>
 </template>
 

@@ -2,6 +2,7 @@
   <div>
     <Header />
     <h3>Profile Page</h3>
+    <p>ini tentang profile nya verli</p>
   </div>
 </template>
 
